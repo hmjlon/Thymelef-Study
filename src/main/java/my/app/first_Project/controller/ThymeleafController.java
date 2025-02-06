@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,13 @@ import java.util.Map;
 @Controller
 @RequestMapping("/basic")
 public class ThymeleafController {
+    @GetMapping("/date")
+    public String date(Model model) {
+        model.addAttribute("nowDateTime",
+                    LocalDateTime.now());
+        return "/utility/date";
+    }
+
     //     http://localhost:8080/basic/text-basic
     @GetMapping("text-basic")
     public String textBasic(Model model) {
@@ -38,15 +46,15 @@ public class ThymeleafController {
         model.addAttribute("userData", userData);
         model.addAttribute("data", "장원영");
 
-//        리스트 작업하기
+//      리스트 작업하기
         List<Fruits> fruits = new ArrayList<>();
-        Fruits apple = new Fruits("사과","신맛");
-        Fruits mango = new Fruits("망고","노란맛");
+        Fruits apple = new Fruits("사과", "신맛");
+        Fruits mango = new Fruits("망고", "노란맛");
 
         fruits.add(apple);
         fruits.add(mango);
 
-        model.addAttribute("fruits",fruits);
+        model.addAttribute("fruits", fruits);
         System.out.println(fruits);
 
 //        맵으로 작업하기
@@ -59,9 +67,9 @@ public class ThymeleafController {
         cat.setName("야옹이");
         cat.setSound("야옹");
 
-        animalMap.put("dog",dog);
-        animalMap.put("cat",cat);
-        model.addAttribute("map",animalMap);
+        animalMap.put("dog", dog);
+        animalMap.put("cat", cat);
+        model.addAttribute("map", animalMap);
         return "/basic/variables";
     }
 }

@@ -1,6 +1,5 @@
 package my.app.first_Project.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,5 +12,4 @@ import lombok.ToString;
 public class Fruits {
     private String fruitName;
     private String taste;
-
 }
