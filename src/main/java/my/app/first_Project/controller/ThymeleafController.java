@@ -104,7 +104,7 @@ return"/basic/operation";
                         new UserData("레이",22,"부산")
                 )
         );
-        model.addAttribute(userList);
+        model.addAttribute("userList", userList);
         System.out.println(userList);
 
     }
