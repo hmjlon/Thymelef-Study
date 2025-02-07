@@ -19,7 +19,8 @@
     <span>요청 구두번호 : [[ ${shoesNumber} ]]</span>
     <li>
      http://localhost:8080/shoes/details/3
-        <a th:href="@{/shoes/details/{id}(id=${shoesNumber})}">
+<!--        <a th:href="@{/shoes/details/{id}(id=${shoesNumber})}">-->
+            <a th:href="@{/shoes/details/{id}(id=${shoesNumber})}">
             Path Variable
         </a>
     </li>

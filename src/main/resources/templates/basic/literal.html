@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>리터럴</h1>
+<ul>
+    <li>
+        <span th:text="장원영">김형민</span>
+        <span th:text="'Hello world'">김형민</span>
+    </li>
+<!--    리터럴은 중간 공백 존재하면 작은따옴표로 묶어야함-->
+    <li> 보낸 데이터 :
+        <span>[[ ${data} ]]</span>
+    </li>
+
+    <li> 보낸 데이터 th 태그:
+        <span th:text="|${data}입니다.|"></span>
+    </li>
+</ul>
+</body>
+</html>
