@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -17,7 +18,7 @@ public class ThymeleafController {
     @GetMapping("/date")
     public String date(Model model) {
         model.addAttribute("nowDateTime",
-                    LocalDateTime.now());
+                LocalDateTime.now());
         return "/utility/date";
     }
 
@@ -71,41 +72,62 @@ public class ThymeleafController {
     }
 
     @GetMapping("/literal")
-    public String literal(Model model){
-        model.addAttribute("data","Spring");
+    public String literal(Model model) {
+        model.addAttribute("data", "Spring!");
         return "/basic/literal";
     }
+
     @GetMapping("/operation")
-    public String operation(Model model){
-model.addAttribute("unllData",null);
-model.addAttribute("name","리사");
-return"/basic/operation";
+    public String operation(Model model) {
+        model.addAttribute("a", 10);
+        model.addAttribute("b", 3);
+        model.addAttribute("nullData", null);
+        model.addAttribute("name", "리사");
+        return "/basic/operation";
     }
 
     @GetMapping("/attribute")
-    public String attribute(){
+    public String attribute() {
         return "/basic/attribute";
     }
+
     @GetMapping("/for")
     public String forOperation(Model model){
         addUser(model);
         return "/basic/for_opr";
-
     }
+
+    @GetMapping("/ive")
+    public String details(
+            @RequestParam("name")String name,
+            @RequestParam("age")int age,
+            @RequestParam("addr")String addr,
+            Model model) {
+        model.addAttribute("selectUser",
+                UserData.fromParams(name, age, addr));
+        return "/basic/detail";
+    }
+
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        addUser(model);
+        return "/basic/condition";
+    }
+
 
     private void addUser(Model model) {
         List<UserData> userList = new ArrayList<>(
                 Arrays.asList(
-                        new UserData("장원영",21,"서울"),
-                        new UserData("안유진",23,"대구"),
-                        new UserData("이서",19,"부산"),
-                        new UserData("가을",24,"광주"),
-                        new UserData("리즈",22,"울산"),
-                        new UserData("레이",22,"부산")
+                        new UserData("장원영", 21, "서울"),
+                        new UserData("안유진", 23, "대구"),
+                        new UserData("이서", 19, "부산"),
+                        new UserData("가을", 24, "광주"),
+                        new UserData("리즈", 22, "울산"),
+                        new UserData("레이", 22, "부산"),
+                        new UserData("홍길동", 40, "제주")
                 )
         );
-        model.addAttribute("userList", userList);
+        model.addAttribute("userList",userList);
         System.out.println(userList);
-
     }
 }
